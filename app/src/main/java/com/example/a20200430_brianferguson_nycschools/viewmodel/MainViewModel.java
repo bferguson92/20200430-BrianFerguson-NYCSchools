@@ -12,7 +12,11 @@ import io.reactivex.rxjava3.core.Observable;
 
 public class MainViewModel extends ViewModel {
 
-    private SchoolsFactory schoolsFactory = new SchoolsFactory();
+    private SchoolsFactory schoolsFactory;
+
+    public MainViewModel(SchoolsFactory schoolsFactory){
+        this.schoolsFactory = schoolsFactory;
+    }
 
     public Observable<List<SchoolResponse>> getSchools() {
         return schoolsFactory.getSchools();

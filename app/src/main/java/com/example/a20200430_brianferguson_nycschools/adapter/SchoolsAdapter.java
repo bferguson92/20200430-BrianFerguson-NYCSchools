@@ -3,7 +3,6 @@ package com.example.a20200430_brianferguson_nycschools.adapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -13,7 +12,7 @@ import com.example.a20200430_brianferguson_nycschools.model.SchoolResponse;
 
 import java.util.List;
 
-public class SchoolsAdapter extends RecyclerView.Adapter<SchoolsAdapter.CustomViewHolder> {
+public class SchoolsAdapter extends RecyclerView.Adapter<CustomViewHolder> {
 
     private List<SchoolResponse> schools;
     private OnItemClickListener listener;
@@ -32,7 +31,7 @@ public class SchoolsAdapter extends RecyclerView.Adapter<SchoolsAdapter.CustomVi
     public CustomViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.school_item, parent, false);
-        return new CustomViewHolder(view);
+        return new CustomViewHolderFactory(view).createViewHolder();
     }
 
     @Override
@@ -46,14 +45,5 @@ public class SchoolsAdapter extends RecyclerView.Adapter<SchoolsAdapter.CustomVi
     @Override
     public int getItemCount() {
         return schools.size();
-    }
-
-    static class CustomViewHolder extends RecyclerView.ViewHolder {
-        TextView schoolName;
-
-        private CustomViewHolder(@NonNull View itemView) {
-            super(itemView);
-            schoolName = itemView.findViewById(R.id.school_name);
-        }
     }
 }

@@ -5,6 +5,8 @@ import com.example.a20200430_brianferguson_nycschools.model.SchoolResponse;
 
 import java.util.List;
 
+import javax.inject.Inject;
+
 import hu.akarnokd.rxjava3.retrofit.RxJava3CallAdapterFactory;
 import io.reactivex.rxjava3.core.Observable;
 import retrofit2.Retrofit;
@@ -13,6 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 public class SchoolsFactory {
     private SchoolsService schoolsService;
 
+    @Inject
     public SchoolsFactory() {
         schoolsService = createService();
     }

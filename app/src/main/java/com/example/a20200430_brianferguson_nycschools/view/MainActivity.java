@@ -17,8 +17,11 @@ import com.example.a20200430_brianferguson_nycschools.adapter.SchoolsAdapter;
 import com.example.a20200430_brianferguson_nycschools.model.SATScoresResponse;
 import com.example.a20200430_brianferguson_nycschools.model.SchoolResponse;
 import com.example.a20200430_brianferguson_nycschools.viewmodel.MainViewModel;
+import com.example.a20200430_brianferguson_nycschools.viewmodel.MainViewModelFactory;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import io.reactivex.rxjava3.android.schedulers.AndroidSchedulers;
 import io.reactivex.rxjava3.disposables.Disposable;
@@ -27,6 +30,8 @@ import io.reactivex.rxjava3.schedulers.Schedulers;
 public class MainActivity extends AppCompatActivity implements SchoolsAdapter.OnItemClickListener {
 
     private MainViewModel mainViewModel;
+    @Inject
+    public MainViewModelFactory mainViewModelFactory;
     private RecyclerView recyclerView;
     private TextView errorText;
     private Disposable schoolDisposable;
@@ -43,7 +48,10 @@ public class MainActivity extends AppCompatActivity implements SchoolsAdapter.On
 
         recyclerView = findViewById(R.id.school_list);
         errorText = findViewById(R.id.error_text);
-        mainViewModel = new ViewModelProvider(this).get(MainViewModel.class);
+
+        ((MainApplication)getApplicationContext()).getComponent().inject(this);
+
+        mainViewModel = mainViewModelFactory.create(MainViewModel.class);
 
         setUpRecycelerView();
         getScores();
@@ -70,6 +78,8 @@ public class MainActivity extends AppCompatActivity implements SchoolsAdapter.On
                 .subscribe(scores -> {
                    this.scores = scores;
                 }, error -> {
+                    Toast toast = Toast.makeText(this, "Could not retrieve SAT Scores", Toast.LENGTH_SHORT);
+                    toast.show();
                 });
     }
 
@@ -88,7 +98,7 @@ public class MainActivity extends AppCompatActivity implements SchoolsAdapter.On
         }
 
         if(!schoolFound) {
-            Toast toast = Toast.makeText(this, "Could not retrieve data", Toast.LENGTH_SHORT);
+            Toast toast = Toast.makeText(this, "Could not retrieve data for school", Toast.LENGTH_SHORT);
             toast.show();
         }
     }
