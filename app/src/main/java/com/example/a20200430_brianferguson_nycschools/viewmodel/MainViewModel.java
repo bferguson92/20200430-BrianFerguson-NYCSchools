@@ -25,4 +25,5 @@ public class MainViewModel extends ViewModel {
     public Observable<List<SATScoresResponse>> getSATScores() {
         return schoolsFactory.getSATScores();
     }
+
 }

@@ -10,7 +10,7 @@ import javax.inject.Inject;
 
 public class MainViewModelFactory implements ViewModelProvider.Factory {
 
-    private SchoolsFactory schoolsFactory;
+    public SchoolsFactory schoolsFactory;
 
     @Inject
     public MainViewModelFactory(SchoolsFactory schoolsFactory){
