@@ -37,9 +37,7 @@ public class SchoolsAdapter extends RecyclerView.Adapter<CustomViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull CustomViewHolder holder, int position) {
         holder.schoolName.setText(schools.get(position).getSchoolName());
-        holder.schoolName.setOnClickListener(click -> {
-            listener.onItemClick(schools.get(position));
-        });
+        holder.bind(schools.get(position), listener);
     }
 
     @Override

@@ -7,12 +7,19 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.a20200430_brianferguson_nycschools.R;
+import com.example.a20200430_brianferguson_nycschools.model.SchoolResponse;
 
-public class CustomViewHolder extends RecyclerView.ViewHolder {
+class CustomViewHolder extends RecyclerView.ViewHolder {
     TextView schoolName;
 
-    public CustomViewHolder(@NonNull View itemView) {
+    CustomViewHolder(@NonNull View itemView) {
         super(itemView);
         schoolName = itemView.findViewById(R.id.school_name);
+    }
+
+    void bind(final SchoolResponse school, final SchoolsAdapter.OnItemClickListener listener) {
+        itemView.setOnClickListener(click -> {
+            listener.onItemClick(school);
+        });
     }
 }
