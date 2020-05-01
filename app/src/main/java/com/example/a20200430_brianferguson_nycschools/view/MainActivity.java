@@ -50,7 +50,7 @@ public class MainActivity extends AppCompatActivity implements SchoolsAdapter.On
     }
 
     private void setUpRecycelerView() {
-        scoresDisposable = mainViewModel.getSchools().subscribeOn(Schedulers.io())
+        schoolDisposable = mainViewModel.getSchools().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(schools -> {
                     this.schools = schools;
@@ -65,12 +65,11 @@ public class MainActivity extends AppCompatActivity implements SchoolsAdapter.On
     }
 
     private void getScores() {
-         scoresDisposable = mainViewModel.getSATScores().subscribeOn(Schedulers.io())
+        scoresDisposable = mainViewModel.getSATScores().subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(scores -> {
                    this.scores = scores;
                 }, error -> {
-
                 });
     }
 
@@ -80,13 +79,10 @@ public class MainActivity extends AppCompatActivity implements SchoolsAdapter.On
 
         for(int i = 0; i < scores.size(); i++) {
             if(school.getDbn().equals(scores.get(i).getDbn())) {
-                Intent intent = new Intent(this, ScoresActivity.class);
-
-                intent.putExtra("MATH", scores.get(i).getSatMathAvgScore());
-                intent.putExtra("READING", scores.get(i).getSatCriticalReadingAvgScore());
-                intent.putExtra("WRITING", scores.get(i).getSatWritingAvgScore());
-
                 schoolFound = true;
+
+                Intent intent = new Intent(this, ScoresActivity.class);
+                intent.putExtra("SCHOOL", scores.get(i));
                 startActivity(intent);
             }
         }
@@ -98,9 +94,9 @@ public class MainActivity extends AppCompatActivity implements SchoolsAdapter.On
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
+    protected void onStop() {
+        super.onStop();
         schoolDisposable.dispose();
-        schoolDisposable.dispose();
+        scoresDisposable.dispose();
     }
 }

@@ -7,19 +7,33 @@
     tools:context=".view.ScoresActivity">
 
     <TextView
+        android:id="@+id/scores_name"
+        android:textSize="@dimen/text_size_16sp"
+        android:padding="@dimen/total_padding_16dp"
+        android:textStyle="bold|italic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
         android:id="@+id/title_view"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingStart="@dimen/start_padding_4dp"
+        android:paddingEnd="@dimen/end_padding_4dp"
         android:text="@string/sat_scores"
         android:textStyle="bold"
-        android:paddingBottom="6dp"
-        app:layout_constraintTop_toTopOf="parent"
+        android:paddingBottom="@dimen/padding_bottom_6dp"
+        app:layout_constraintTop_toBottomOf="@id/scores_name"
         app:layout_constraintStart_toStartOf="parent"/>
 
     <TextView
         android:id="@+id/math_score"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingStart="@dimen/start_padding_4dp"
+        android:paddingEnd="@dimen/end_padding_4dp"
         android:text="@string/math"
         app:layout_constraintTop_toBottomOf="@id/title_view"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -28,6 +42,8 @@
         android:id="@+id/reading_score"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingStart="@dimen/start_padding_4dp"
+        android:paddingEnd="@dimen/end_padding_4dp"
         android:text="@string/reading"
         app:layout_constraintTop_toBottomOf="@+id/math_score"
         app:layout_constraintStart_toStartOf="parent"/>
@@ -36,8 +52,22 @@
         android:id="@+id/writing_score"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingStart="@dimen/start_padding_4dp"
+        android:paddingEnd="@dimen/end_padding_4dp"
         android:text="@string/writing"
         app:layout_constraintTop_toBottomOf="@+id/reading_score"
+        app:layout_constraintStart_toStartOf="parent"/>
+
+    <TextView
+        android:id="@+id/number_of_takers"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/number_of_takers"
+        android:textStyle="bold"
+        android:paddingStart="@dimen/start_padding_4dp"
+        android:paddingEnd="@dimen/end_padding_4dp"
+        android:paddingTop="@dimen/padding_top_6dp"
+        app:layout_constraintTop_toBottomOf="@+id/writing_score"
         app:layout_constraintStart_toStartOf="parent"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

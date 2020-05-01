@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="start_padding_4dp">4dp</dimen>
+    <dimen name="end_padding_4dp">4dp</dimen>
+    <dimen name="total_padding_16dp">16dp</dimen>
+    <dimen name="text_size_16sp">16sp</dimen>
+    <dimen name="padding_bottom_6dp">6dp</dimen>
+    <dimen name="padding_top_6dp">6dp</dimen>
+</resources>

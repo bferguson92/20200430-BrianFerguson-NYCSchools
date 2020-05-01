@@ -1,10 +1,13 @@
 
 package com.example.a20200430_brianferguson_nycschools.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class SATScoresResponse {
+public class SATScoresResponse implements Parcelable {
 
     @SerializedName("dbn")
     @Expose
@@ -24,6 +27,27 @@ public class SATScoresResponse {
     @SerializedName("sat_writing_avg_score")
     @Expose
     private String satWritingAvgScore;
+
+    protected SATScoresResponse(Parcel in) {
+        dbn = in.readString();
+        schoolName = in.readString();
+        numOfSatTestTakers = in.readString();
+        satCriticalReadingAvgScore = in.readString();
+        satMathAvgScore = in.readString();
+        satWritingAvgScore = in.readString();
+    }
+
+    public static final Creator<SATScoresResponse> CREATOR = new Creator<SATScoresResponse>() {
+        @Override
+        public SATScoresResponse createFromParcel(Parcel in) {
+            return new SATScoresResponse(in);
+        }
+
+        @Override
+        public SATScoresResponse[] newArray(int size) {
+            return new SATScoresResponse[size];
+        }
+    };
 
     public String getDbn() {
         return dbn;
@@ -73,4 +97,18 @@ public class SATScoresResponse {
         this.satWritingAvgScore = satWritingAvgScore;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(dbn);
+        dest.writeString(schoolName);
+        dest.writeString(numOfSatTestTakers);
+        dest.writeString(satCriticalReadingAvgScore);
+        dest.writeString(satMathAvgScore);
+        dest.writeString(satWritingAvgScore);
+    }
 }

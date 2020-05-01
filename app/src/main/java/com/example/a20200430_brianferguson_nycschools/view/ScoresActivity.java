@@ -1,30 +1,34 @@
 package com.example.a20200430_brianferguson_nycschools.view;
 
-        import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.app.AppCompatActivity;
 
-        import android.os.Bundle;
-        import android.widget.TextView;
+import android.os.Bundle;
+import android.widget.TextView;
 
-        import com.example.a20200430_brianferguson_nycschools.R;
+import com.example.a20200430_brianferguson_nycschools.R;
+import com.example.a20200430_brianferguson_nycschools.model.SATScoresResponse;
 
 public class ScoresActivity extends AppCompatActivity {
-
-    private TextView mathScoreText;
-    private TextView readingScoreText;
-    private TextView writingScoreText;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_scores);
 
-        mathScoreText = findViewById(R.id.math_score);
-        readingScoreText = findViewById(R.id.reading_score);
-        writingScoreText = findViewById(R.id.writing_score);
+        TextView schoolNameText = findViewById(R.id.scores_name);
+        TextView mathScoreText = findViewById(R.id.math_score);
+        TextView readingScoreText = findViewById(R.id.reading_score);
+        TextView writingScoreText = findViewById(R.id.writing_score);
+        TextView numberOfTakersText = findViewById(R.id.number_of_takers);
 
-        mathScoreText.append(getIntent().getStringExtra("MATH"));
-        readingScoreText.append(getIntent().getStringExtra("READING"));
-        writingScoreText.append(getIntent().getStringExtra("WRITING"));
+        SATScoresResponse scores = getIntent().getParcelableExtra("SCHOOL");
 
+        if (scores != null) {
+            schoolNameText.setText(scores.getSchoolName());
+            mathScoreText.append(scores.getSatMathAvgScore());
+            readingScoreText.append(scores.getSatCriticalReadingAvgScore());
+            writingScoreText.append(scores.getSatWritingAvgScore());
+            numberOfTakersText.append(scores.getNumOfSatTestTakers());
+        }
     }
 }
