@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">20200430-BrianFerguson-NYCSchools</string>
+    <string name="error_text">ERROR: UNABLE TO FETCH DATA</string>
+    <string name="math">MATH:</string>
+    <string name="reading">READING:</string>
+    <string name="writing">WRITING:</string>
+    <string name="sat_scores">SAT SCORES</string>
+</resources>
