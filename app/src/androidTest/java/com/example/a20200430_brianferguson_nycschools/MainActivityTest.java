@@ -2,7 +2,6 @@ package com.example.a20200430_brianferguson_nycschools;
 
 import androidx.test.espresso.contrib.RecyclerViewActions;
 import androidx.test.espresso.intent.rule.IntentsTestRule;
-import androidx.test.rule.ActivityTestRule;
 
 import com.example.a20200430_brianferguson_nycschools.view.MainActivity;
 import com.example.a20200430_brianferguson_nycschools.view.ScoresActivity;

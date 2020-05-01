@@ -1,9 +1,9 @@
 package com.example.a20200430_brianferguson_nycschools.view;
 
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.widget.TextView;
+
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.example.a20200430_brianferguson_nycschools.R;
 import com.example.a20200430_brianferguson_nycschools.model.SATScoresResponse;
